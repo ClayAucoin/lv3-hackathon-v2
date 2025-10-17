@@ -1,0 +1,59 @@
+section.genre-btns {
+    text-align: center;
+    margin: 1rem 0;
+    width: 100%;
+}
+
+button.is-active {
+    background-color: #333;
+    color: white;
+}
+
+div.genre-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 1rem;
+    max-width: 600px;
+}
+
+section.current-genre {
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    font-weight: bold;
+}
+
+div.genre-nav-buttons {
+    display: flex;
+    justify-content: center;
+    gap: .25rem;
+    margin-top: 1rem;
+}
+
+button.genre-nav-button {
+    border: 0px;
+    background: none;
+    font-size: 1.5em;
+}
+
+img.movie-grid {
+    width: 90px;
+    height: auto;
+    /* border-radius: 10px; */
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+section.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, auto));
+    gap: 5px;
+    margin: 2em auto;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    max-width: 100%;
+}

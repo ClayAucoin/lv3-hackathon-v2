@@ -1,0 +1,170 @@
+* {
+    box-sizing: border-box;
+}
+
+.my-container {
+    max-width: 1230px;
+    margin: 30px auto;
+}
+
+.btn-primary {
+    height: 2.5em;
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+.movie-name {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+article {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+section.trailer {
+    text-align: left;
+    flex: 1 1 480px;
+    min-width: 0;
+    margin-left: 20px;
+}
+
+section.description {
+    width: 300px;
+    min-width: 0
+}
+
+section.image {
+    flex: 0 1 320px;
+    max-width: 100%;
+    min-width: 0;
+}
+
+section.image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    /* border-radius: 10px; */
+}
+
+img {
+    max-width: 100%;
+    /* border-radius: 10px; */
+}
+
+/* details area */
+section.description {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: 60%;
+    font-size: 1.5em;
+}
+
+section.details-pane {
+    max-width: 40%;
+}
+
+section.details-pane>div.details {
+    flex: 1 1 280px;
+    min-width: 260px;
+    min-width: 0;
+}
+
+section.details-pane ul.details {
+    list-style: none;
+    margin: 0;
+    padding-left: 1rem;
+    display: block;
+}
+
+section.details {
+    width: 600px;
+}
+
+article.info {
+    margin-top: 50px;
+}
+
+.button-outter-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+    /* margin-top: 20px; */
+}
+
+.btn {
+    display: inline-block;
+    line-height: 1;
+    vertical-align: middle;
+    font-size: .9em;
+}
+
+.page-title {
+    text-align: center;
+}
+
+.movie-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.trailer-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+
+.trailer-container iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+img.movie-grid {
+    width: 90px;
+    height: auto;
+    /* border-radius: 10px; */
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+div.movie-grid {
+    max-width: 100%;
+    margin-top: 2em;
+    gap: 5px
+}
+
+@media (max-width: 768px) {
+    .movie-title {
+        font-size: 2.5rem;
+    }
+
+    section.details-pane>div.details {
+        flex: 0 0 100%;
+    }
+
+    section.details {
+        width: 100%;
+    }
+
+    div.details {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
