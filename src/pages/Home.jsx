@@ -1,11 +1,8 @@
 import React from "react";
-import { useState } from "react";
 import "./Home.css";
 
 export default function Home(props) {
-  const { data } = props;
-  const [currentGenre, setCurrentGenre] = useState("Action");
-  const [movieGrid, setMovieGrid] = useState();
+  const { data, currentGenre, onSelectMovie, onChangeGenre } = props;
 
   // build unique genre list
   const allGenres = Array.from(
@@ -36,44 +33,23 @@ export default function Home(props) {
     );
   }
 
-  function firstGenre() {
-    if (allGenres.length) setCurrentGenre(allGenres[0]);
-  }
+  // build movie grid according to currentGenre
+  let movieGridJSX = [];
+  for (let i = 0; i < data.length; i++) {
+    const movie = data[i];
+    const movieGenres = movie.genres || "";
 
-  function lastGenre() {
-    if (allGenres.length) setCurrentGenre(allGenres[allGenres.length - 1]);
-  }
-
-  function nextGenre() {
-    if (!allGenres.length) return;
-    const i = allGenres.indexOf(currentGenre);
-    const next = i === -1 ? 0 : Math.min(i + 1, allGenres.length - 1);
-    setCurrentGenre(allGenres[next]);
-  }
-
-  function prevGenre() {
-    if (!allGenres.length) return;
-    const i = allGenres.indexOf(currentGenre);
-    const prev = i === -1 ? 0 : Math.max(i - 1, 0);
-    setCurrentGenre(allGenres[prev]);
-  }
-
-  function currentGenreClick(genre) {
-    setCurrentGenre(genre);
-    buildMovieGrid(genre);
-  }
-
-  function buildMovieGrid(genre) {
-    let movieGridJSX = [];
-    for (let i = 0; i < data.length; i++) {
-      const movie = data[i];
-      const movieGenres = movie.genres || "";
-
-      if (movieGenres.includes(genre.toLowerCase())) {
-        movieGridJSX.push(<img onClick={} className="movie-grid" src={movie.poster} />);
-      }
+    if (movieGenres.includes(currentGenre.toLowerCase())) {
+      movieGridJSX.push(
+        <img
+          key={i}
+          onClick={() => onSelectMovie(i)}
+          className="movie-grid"
+          src={movie.poster}
+          alt={movie.title}
+        />
+      );
     }
-    setMovieGrid(movieGridJSX);
   }
 
   // filter: get qty of movies in current genre
@@ -85,11 +61,37 @@ export default function Home(props) {
       .includes(currentGenre.toLowerCase())
   );
 
+  // handle genre navigation buttons
+  function firstGenre() {
+    if (allGenres.length) onChangeGenre(allGenres[0]);
+  }
+
+  function lastGenre() {
+    if (allGenres.length) onChangeGenre(allGenres[allGenres.length - 1]);
+  }
+
+  function nextGenre() {
+    if (!allGenres.length) return;
+    const i = allGenres.indexOf(currentGenre);
+    const next = i === -1 ? 0 : Math.min(i + 1, allGenres.length - 1);
+    onChangeGenre(allGenres[next]);
+  }
+
+  function prevGenre() {
+    if (!allGenres.length) return;
+    const i = allGenres.indexOf(currentGenre);
+    const prev = i === -1 ? 0 : Math.max(i - 1, 0);
+    onChangeGenre(allGenres[prev]);
+  }
+
+  function currentGenreClick(genre) {
+    onChangeGenre(genre);
+  }
+
   return (
     <>
       <div className="containter">
         <main>
-          <h1>Home</h1>
           <header className="mb-3">
             <div className="row">
               <div className="col-4 align-self-center page-title">
@@ -131,7 +133,7 @@ export default function Home(props) {
             </section>
             {currentGenre && (
               <section className="movie-grid justify-content-center">
-                {movieGrid}
+                {movieGridJSX}
               </section>
             )}
           </article>
