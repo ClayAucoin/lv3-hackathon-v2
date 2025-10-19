@@ -3,6 +3,7 @@ import "./App.css";
 import Home from "./pages/Home";
 import MovieView from "./pages/MovieView";
 import data from "./data/enriched-collection.json";
+import Profit from "./pages/Profit";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("home");
@@ -11,6 +12,10 @@ function App() {
 
   function goToHome() {
     setCurrentPage("home");
+  }
+
+  function goToProfit() {
+    setCurrentPage("profit");
   }
 
   let pageContent = <Home data={data} onSelectMovie={handleSelectMovie} />;
@@ -36,6 +41,10 @@ function App() {
     );
   }
 
+  if (currentPage === "profit") {
+    pageContent = <Profit />;
+  }
+
   function handleSelectMovie(index) {
     setSelectedMovieIndex(index);
     setCurrentPage("movieview");
@@ -43,9 +52,12 @@ function App() {
 
   return (
     <>
-      {/* <button type="button" onClick={goToHome}>
+      <button type="button" onClick={goToHome}>
         Home
-      </button> */}
+      </button>
+      <button type="button" onClick={goToProfit}>
+        Profit Calculator
+      </button>{" "}
       {pageContent}
     </>
   );
