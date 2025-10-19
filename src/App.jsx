@@ -42,7 +42,7 @@ function App() {
   }
 
   if (currentPage === "profit") {
-    pageContent = <Profit />;
+    pageContent = <Profit onSelectMovie={handleSelectMovie} />;
   }
 
   function handleSelectMovie(index) {
